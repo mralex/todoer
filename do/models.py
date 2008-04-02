@@ -6,3 +6,9 @@ class Todo(models.Model):
 	done = models.BooleanField()
 	due = models.DateTimeField('Date Due')
 	added = models.DateTimeField('Date Added')
+	
+	def __unicode__(self):
+		return self.todo
+	
+	class Admin:
+		pass

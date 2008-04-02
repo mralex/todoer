@@ -1,0 +1,13 @@
+
+{% if object_list %}
+	<ul>
+		{% for todo in object_list %}
+			<li>
+				{{ todo.todo }}
+				<strong>{% if todo.done %}Done!{% else %}Not Done!{% endif %}</strong>
+			</li>
+		{% endfor %}
+	</ul>
+{% else %}
+	<p>Hooray! Nothing to do!</p>
+{% endif %}
