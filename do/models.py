@@ -8,13 +8,13 @@ class TodoManager(models.Manager):
 	def done(self):
 		return self.filter(done=True)
 
-PRIORITIES = (
-	(1, "High"),
-	(2, "Medium"),
-	(3, "Low"),
-)
-
 class Todo(models.Model):
+	PRIORITIES = (
+		(1, "High"),
+		(2, "Medium"),
+		(3, "Low"),
+	)
+	
 	todo = models.CharField(max_length = 200)
 	done = models.BooleanField(default=False)
 	added = models.DateTimeField('Date Added', default=datetime.now())

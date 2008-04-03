@@ -1,7 +1,9 @@
 from django.conf.urls.defaults import *
 from do.models import Todo
+from do.forms import TodoForm
 
 todo_dict = {
+	'extra_context': {'form': TodoForm()},
 	'queryset': Todo.objects.all(),
 }
 

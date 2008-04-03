@@ -2,6 +2,13 @@
 
 {% block body %}
 
+<div id="new_todo">
+	<form action="/todo/create/" method="post" accept-charset="utf-8">
+		{{ form.as_table }}
+		<p><input type="submit" value="Continue &rarr;"></p>
+	</form>
+</div>
+
 {% if object_list %}
 	<ul>
 		{% for todo in object_list %}
