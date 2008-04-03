@@ -1,13 +1,18 @@
+{% extends "base.html" %}
+
+{% block body %}
 
 {% if object_list %}
 	<ul>
 		{% for todo in object_list %}
-			<li>
-				{{ todo.todo }}
-				<strong>{% if todo.done %}Done!{% else %}Not Done!{% endif %}</strong>
+			<li class="{% if todo.done %}done{% endif %} priority{{ todo.priority }}" id="todo_item_{{ todo.id }}">
+				<input type="checkbox" name="todo_status_{{ todo.id }}" id="todo_status_{{ todo.id }}" {% if todo.done %}checked{% endif %} />
+				<span>{{ todo.todo }}</span>
 			</li>
 		{% endfor %}
 	</ul>
 {% else %}
 	<p>Hooray! Nothing to do!</p>
 {% endif %}
+
+{% endblock %}
