@@ -1,4 +1,5 @@
 from django.http import HttpResponseRedirect, HttpResponse
+from django.views.generic import list_detail
 from do.models import Todo
 from do.forms import TodoForm
 
@@ -17,4 +18,8 @@ def update(request):
 		todo.done = not todo.done
 		todo.save()
 		
-	return HttpResponse('')
+	return list_detail.object_list(
+		request,
+		queryset = Todo.objects.all(),
+		template_name = "do/todo_items.html"
+	)

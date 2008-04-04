@@ -7,9 +7,9 @@ ul {
 
 li.done { color: #ccc !important; }
 li.done span { text-decoration: line-through; }
-li.priority1 { font-weight: bold; }
-li.priority2 {}
-li.priority3 { font-size:0.8em; color: #333;}
+li.priority1 span { font-weight: bold; }
+li.priority2 span {}
+li.priority3 span { font-size:0.8em; }
 
 #head {
 	background-color: #E78100;

@@ -2,28 +2,32 @@
 
 {% block script %}
 
-$(document).ready(function() {
+function handleChecks() {
 	$("input[@type='checkbox']").click(function() {
 		$(this).parent().toggleClass("done");
-		
+	
 		// get the id# of the todo item
 		var todo_id = $(this).parent().attr('id').split('_')[2];
 
 		$.ajax({
 			type: "POST",
 			url: "/todo/update/",
-			data: "id=" + todo_id
+			data: "id=" + todo_id,
+			success: function(msg) {
+				$("#todoList").html(msg);
+				handleChecks();	// new set of checkboxes
+								// set ourselves up again. 
+								// yay, recursive
+			}
 		});
 	});
-	
-	// reset checkboxes
-	$("input[@type='checkbox']").each(function(i) {
-		if ($(this).parent().hasClass("done")) {
-			this.checked = true;
-		} else {
-			this.checked = false;
-		}
-	});
+
+}
+
+$(document).ready(function() {
+
+	handleChecks();
+
 });
 
 {% endblock %}
@@ -38,17 +42,8 @@ $(document).ready(function() {
 	</form>
 </div>
 
-{% if object_list %}
-	<ul>
-		{% for todo in object_list %}
-			<li class="{% if todo.done %}done{% endif %} priority{{ todo.priority }}" id="todo_item_{{ todo.id }}">
-				<input type="checkbox" name="todo_status_{{ todo.id }}" id="todo_status_{{ todo.id }}" />
-				<span>{{ todo.todo }}</span>
-			</li>
-		{% endfor %}
-	</ul>
-{% else %}
-	<p>Hooray! Nothing to do!</p>
-{% endif %}
+<ul id="todoList">
+	{% include 'do/todo_items.html' %}
+</ul>
 
 {% endblock %}
