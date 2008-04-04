@@ -11,7 +11,7 @@ function handleChecks() {
 
 		$.ajax({
 			type: "POST",
-			url: "/todo/update/",
+			url: "update/",
 			data: "id=" + todo_id,
 			success: function(msg) {
 				$("#todoList").html(msg);
