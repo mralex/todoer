@@ -3,7 +3,7 @@
 			<li class="{% if todo.done %}done{% endif %} priority{{ todo.priority }}" id="todo_item_{{ todo.id }}">
 				<small>+ -</small>
 				<input type="checkbox" name="todo_status_{{ todo.id }}" id="todo_status_{{ todo.id }}" {% if todo.done %}checked{% endif %} />
-				<span>{{ todo.todo }}</span>
+				<label for="todo_status_{{ todo.id }}"><span>{{ todo.todo }}</span></label>
 			</li>
 		{% endfor %}
 {% endif %}
