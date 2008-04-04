@@ -12,4 +12,9 @@ def create(request):
 	return HttpResponseRedirect("/todo/")
 
 def update(request):
-	return HttpResponse("update()")
+	if request.method == 'POST':
+		todo = Todo.objects.get(pk=request.POST['id'])
+		todo.done = not todo.done
+		todo.save()
+		
+	return HttpResponse('')
